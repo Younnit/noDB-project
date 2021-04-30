@@ -70,7 +70,7 @@ export class Payments extends Component {
     render() {
         
         return this.state.editMode === true && this.state.createMode === false ? (
-            <div>
+            <div className="editMode">
                 <p>
                     How much did you pay {this.props.paymentsArray.lender}?
 
@@ -87,7 +87,7 @@ export class Payments extends Component {
             </div>
             ) : (
             <div>
-                <div>
+                <div className="createMode">
                     <input 
                 value={this.state.name} 
                 placeholder='Enter your name.' 
@@ -109,7 +109,7 @@ export class Payments extends Component {
                 <button onClick={this.handleCreate}>Create</button>
                 </div>
 
-                <div>
+                <div className="activePayments">
                     {this.props.paymentsArray.map((element) => {
                         return(
                             <p>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import Payments from './Payments'
+import History from './History'
 
 export class Main extends Component {
     constructor(props) {
@@ -56,14 +57,17 @@ export class Main extends Component {
     
     render() {
         return (
-            <div>
+            <main>
                 <Payments 
                 createItem={this.createItem}
                 paymentsArray={this.state.paymentsArray}
                 deleteItem={this.deleteItem}
                 editItem={this.editItem}
                 />
-            </div>
+                <History 
+                paymentsArray={this.state.paymentsArray}
+                />
+            </main>
         )
     }
 }
