@@ -26,7 +26,6 @@ module.exports = {
             return e.id === +id
         })
         payments[index].changedAmount = changedAmount
-        parseInt(payments.totalOwed) -= +payments.changedAmount
         res.status(200).send(payments)
     },
     deleteItem: (req, res) => {

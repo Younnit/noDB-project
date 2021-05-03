@@ -1,4 +1,152 @@
+html{
+  /* background-color: #eeeded; */
+  background-color: #e7e7e7;
+}
+
 .App {
   text-align: center;
 }
 
+main{
+  display: flex;
+  width: 65vw;
+  margin: auto;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+header{
+  display: flex;
+  flex-direction: column;
+  color: #1b1b1b;
+}
+
+#links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#links p{
+  margin: 1rem;
+}
+
+main > div{
+  width: 70%;
+}
+
+h1{
+  font-weight: 200;
+  font-size: 36pt;
+}
+
+h2{
+  margin: 0px;
+  font-weight: 300;
+}
+
+h3{
+  margin: 0px;
+  font-weight: 400;
+  background-color: #6c5b7b;
+  padding: 0 1rem 0.5rem;
+  margin-top: 0.5rem;
+  color: white;
+}
+
+.activePayments{
+  background-color: white;
+  text-align: left;
+  border-radius: 0px 0px 0px 1rem;
+  height: 70vh;
+  color: #1b1b1b;
+}
+
+.stylePayments{
+  display: flex;
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stylePayments p{
+  background-color: rgba(255, 255, 255, 0.911);
+  color: #1b1b1b;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.404);
+}
+
+.createMode{
+  padding-top: 1rem;
+  background-color: white;
+  border-radius: 0px 0px 0px 1rem;
+  height: 70vh;
+  color: #1b1b1b;
+}
+
+.editMode{
+  background-color: white;
+  border-radius: 0px 0px 0px 1rem;
+  height: 70vh;
+  color: #1b1b1b;
+}
+
+.buttonDiv{
+  padding-right: 1rem;
+}
+
+.history{
+  background-color: #6c5b7b;
+  border-radius: 0 0 1rem 0px;
+  width: 30%;
+  height: 70vh;
+  color: white;
+}
+
+.specHistory{
+  padding-left: 2rem;
+  padding-right: 1rem;
+  text-align: left;
+  line-height: 150%;
+}
+
+.specHistory li{
+  color: white;
+  font-size: 10pt;
+}
+
+#createModeBtn{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0.5rem 1rem; 
+}
+
+button{
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.404);
+  border: none;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  padding: 0.25rem 0.5rem;
+}
+
+button:hover{
+  background: rgba(0, 0, 0, 0.158);
+  color: white;
+}
+
+.newLoan{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0px 0px 1rem;
+}
+
+.newLoan > div{
+  display: flex;
+  align-items: center;
+}

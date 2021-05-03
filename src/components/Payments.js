@@ -45,6 +45,7 @@ export class Payments extends Component {
             lender: '',
             amount: ''
         })
+        this.toggleCreate()
     }
 
     toggleEdit = () => {
@@ -54,8 +55,15 @@ export class Payments extends Component {
         })
     }
 
+    toggleCreate = () => {
+        this.setState({
+            createMode: !this.state.createMode,
+            editMode: false
+        })
+    }
+
     handleEdit = () => {
-        this.props.editItem(this.props.paymentsArray.id, this.state.editAmount)
+        this.props.editItem(this.props.paymentsArray.id, this.props.paymentsArray.changedAmount)
         this.toggleEdit()
         this.setState({
             editAmount: '',
@@ -68,27 +76,12 @@ export class Payments extends Component {
 
 
     render() {
-        
-        return this.state.editMode === true && this.state.createMode === false ? (
-            <div className="editMode">
-                <p>
-                    How much did you pay {this.props.paymentsArray.lender}?
 
-                    <input 
-                        value={this.state.editAmount} 
-                        placeholder='Enter an amount' 
-                        onChange={(e) => this.handleEditChange(e.target.value)}
-                    />
 
-                    <button onClick={this.toggleEdit}>Go Back</button>
-                    <button onClick={this.handleEdit}>Save</button>
-
-                </p>
-            </div>
-            ) : (
-            <div>
+        if(this.state.createMode === true && this.state.editMode === false){
+            return(
                 <div className="createMode">
-                    <input 
+                <input 
                 value={this.state.name} 
                 placeholder='Enter your name.' 
                 onChange={(e) => this.handleNameChange(e.target.value)}
@@ -108,21 +101,53 @@ export class Payments extends Component {
 
                 <button onClick={this.handleCreate}>Create</button>
                 </div>
+            )
+        }else if(this.state.editMode === true && this.state.createMode === false){
+            return (
+                <div className="editMode">
+                <p>
+                     How much did you pay to the lender?
+                <br />
+                <br />
+                    <input 
+                        value={this.state.editAmount} 
+                        placeholder='Enter an amount' 
+                        onChange={(e) => this.handleEditChange(e.target.value)}
+                    />
 
+                    <button onClick={this.toggleEdit}>Cancel</button>
+                    <button onClick={this.handleEdit}>Save</button>
+
+                </p>
+            </div>
+            )
+        }else{
+            return(
                 <div className="activePayments">
-                    {this.props.paymentsArray.map((element) => {
+                    <div className="newLoan">
+                        <h2>Loans</h2>
+                        <div>
+                            <h2>Create a new loan</h2>
+                            <button id="createModeBtn" onClick={this.toggleCreate}>+</button>
+                        </div>
+                    </div>
+                    {this.props.paymentsArray.filter((person) => person.changedAmount > 0).map((element) => {
                         return(
-                            <p>
-                                {element.name} owes {element.lender} ${element.totalOwed}. 
-                                <button onClick={this.toggleEdit}>Edit</button>
-                                <button onClick={() => this.props.deleteItem(element.id)}>Delete</button>
-                            </p>
+                            <div className="stylePayments">
+                                <p>
+                                    <u>{element.name}</u> owes <u>{element.lender}</u> ${element.changedAmount}. 
+                                </p>
+                                <div className="buttonDiv">
+                                    <button onClick={this.toggleEdit}>Make a payment</button>
+                                    <button onClick={() => this.props.deleteItem(element.id)}>Delete</button>
+                                </div>
+                                    
+                            </div>
                         )
                     })}
                 </div>
-
-            </div>
-        )
+            )
+        }
     }
 }
 

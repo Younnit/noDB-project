@@ -2,9 +2,14 @@ import React from 'react'
 
 function Header() {
     return (
-        <div>
+        <header>
             <h1>Loan Payment Tracker</h1>
-        </div>
+            <div id="links">
+                <p>Home</p>
+                <p>History</p>
+                <p>Profile</p>
+            </div>
+        </header>
     )
 }
 

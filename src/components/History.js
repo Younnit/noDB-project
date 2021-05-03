@@ -8,24 +8,21 @@ export class History extends Component {
              history: []
         }
     }
-
-
     
     render() {
-        const historyList = () => {
-            let newList = []
-            for(let i = 0; i < this.props.paymentsArray.length; i++){
-                if(this.props.paymentsArray[i].changedAmount === 0){
-                    newList.push(this.props.paymentsArray[i])
-                }
-            }
-            this.setState({
-                history: [...this.state.history, newList]
-            })
-        }
         return (
             <div className="history">
-                <p>{historyList}</p>
+                <h3>History</h3>
+                {this.props.paymentsArray.filter((amount) => amount.changedAmount <= 0).map((element) => {
+                    return(
+                        <div className="specHistory" key={element.id}>
+                            <li>{element.name} has completed their loan with {element.lender}!</li>
+                        </div>
+                        
+                    )
+                })}
+
+                <p>History test</p>
             </div>
         )
     }
