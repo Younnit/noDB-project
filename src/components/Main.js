@@ -44,7 +44,6 @@ export class Main extends Component {
     }
 
     editItem = (id, changedAmount) => {
-        console.log(id, changedAmount)
         axios.put(`/api/payments/${id}`, {changedAmount})
         .then((res) => {
             this.setState({

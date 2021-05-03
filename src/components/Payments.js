@@ -62,7 +62,6 @@ export class Payments extends Component {
     
     handleEdit = () => {
         let newAmount = this.state.changedAmount - this.state.editAmount
-        console.log(this.props)
         this.props.editItem(this.state.id, newAmount)
         this.toggleEdit()
         this.setState({
