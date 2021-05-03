@@ -25,6 +25,7 @@ module.exports = {
         const index = payments.findIndex((e) => {
             return e.id === +id
         })
+        console.log(payments, index)
         payments[index].changedAmount = changedAmount
         res.status(200).send(payments)
     },

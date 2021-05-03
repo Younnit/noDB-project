@@ -10,7 +10,9 @@ export class Payments extends Component {
              amount: '',
              editMode: false,
              editAmount: '',
-             createMode: false
+             createMode: false,
+             id: null,
+             changedAmount: 0
         }
     }
 
@@ -38,6 +40,37 @@ export class Payments extends Component {
         })
     }
 
+    newToggleEdit = () => {
+        this.setState({editMode: !this.state.editMode})
+    }
+
+    toggleEdit = (id, changedAmount) => {
+        this.setState({
+            editMode: !this.state.editMode,
+            createMode: false,
+            id,
+            changedAmount
+        })
+    }
+    
+    toggleCreate = () => {
+        this.setState({
+            createMode: !this.state.createMode,
+            editMode: false
+        })
+    }
+    
+    handleEdit = () => {
+        let newAmount = this.state.changedAmount - this.state.editAmount
+        console.log(this.props)
+        this.props.editItem(this.state.id, newAmount)
+        this.toggleEdit()
+        this.setState({
+            editAmount: '',
+            
+        })
+    }
+    
     handleCreate = () => {
         this.props.createItem(this.state.name, this.state.lender, this.state.amount)
         this.setState({
@@ -47,30 +80,6 @@ export class Payments extends Component {
         })
         this.toggleCreate()
     }
-
-    toggleEdit = () => {
-        this.setState({
-            editMode: !this.state.editMode,
-            createMode: false
-        })
-    }
-
-    toggleCreate = () => {
-        this.setState({
-            createMode: !this.state.createMode,
-            editMode: false
-        })
-    }
-
-    handleEdit = () => {
-        this.props.editItem(this.props.paymentsArray.id, this.props.paymentsArray.changedAmount)
-        this.toggleEdit()
-        this.setState({
-            editAmount: '',
-            
-        })
-    }
-    
 
     //Rendering of the elements
 
@@ -98,8 +107,10 @@ export class Payments extends Component {
                 placeholder='Enter the amount you owe.' 
                 onChange={(e) => this.handleAmountChange(e.target.value)}
                 />
-
-                <button onClick={this.handleCreate}>Create</button>
+                <br />
+                <br />
+                <button onClick={this.toggleCreate}>Cancel</button>
+                <button onClick={this.handleCreate} id="clickMe">Create</button>
                 </div>
             )
         }else if(this.state.editMode === true && this.state.createMode === false){
@@ -115,8 +126,8 @@ export class Payments extends Component {
                         onChange={(e) => this.handleEditChange(e.target.value)}
                     />
 
-                    <button onClick={this.toggleEdit}>Cancel</button>
-                    <button onClick={this.handleEdit}>Save</button>
+                    <button onClick={this.newToggleEdit}>Cancel</button>
+                    <button onClick={this.handleEdit} id="clickMe">Save</button>
 
                 </p>
             </div>
@@ -135,10 +146,10 @@ export class Payments extends Component {
                         return(
                             <div className="stylePayments">
                                 <p>
-                                    <u>{element.name}</u> owes <u>{element.lender}</u> ${element.changedAmount}. 
+                                    <u>{element.name}</u> owes <u>{element.lender}</u> ${element.changedAmount}
                                 </p>
                                 <div className="buttonDiv">
-                                    <button onClick={this.toggleEdit}>Make a payment</button>
+                                    <button onClick={() => this.toggleEdit(element.id, element.changedAmount)}>Make a payment</button>
                                     <button onClick={() => this.props.deleteItem(element.id)}>Delete</button>
                                 </div>
                                     
