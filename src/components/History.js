@@ -21,8 +21,6 @@ export class History extends Component {
                         
                     )
                 })}
-
-                <p>History test</p>
             </div>
         )
     }
